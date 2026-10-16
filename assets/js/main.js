@@ -6,7 +6,6 @@ function initDefaultData() {
             { id: 2, judul: 'Atomic Habits', penulis: 'James Clear', kategori: 'Produktivitas', isbn: '978-602-06-3317-6', stok: 8, cover: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=500&q=80' },
             { id: 3, judul: 'Sapiens: A Brief History of Humankind', penulis: 'Yuval Noah Harari', kategori: 'Sejarah', isbn: '978-0062316097', stok: 3, cover: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=500&q=80' },
             { id: 4, judul: 'The Subtle Art of Not Giving a F*ck', penulis: 'Mark Manson', kategori: 'Pengembangan Diri', isbn: '978-0062457714', stok: 6, cover: 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=500&q=80' },
-            { id: 5, judul: 'Thinking, Fast and Slow', penulis: 'Daniel Kahneman', kategori: 'Psikologi', isbn: '978-0374533557', stok: 4, cover: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=500&q=80' }
         ];
         localStorage.setItem('books', JSON.stringify(defaultBooks));
     }
