@@ -5,6 +5,7 @@ function initDefaultData() {
             { id: 1, judul: 'Filosofi Teras', penulis: 'Henry Manampiring', kategori: 'Pengembangan Diri', isbn: '978-602-06-3824-9', stok: 5, cover: 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&w=500&q=80' },
             { id: 2, judul: 'Atomic Habits', penulis: 'James Clear', kategori: 'Produktivitas', isbn: '978-602-06-3317-6', stok: 8, cover: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=500&q=80' },
             { id: 3, judul: 'Bumi Manusia', penulis: 'Pramoedya Ananta Toer', kategori: 'Novel Sejarah', isbn: '978-979-97312-3-4', stok: 3, cover: 'https://images.unsplash.com/photo-1495640388908-05fa85288e61?auto=format&fit=crop&w=500&q=80' }
+            { id: 4, judul: 'Bumi Manusia', penulis: 'Pramoedya Ananta Toer', kategori: 'Novel Sejarah', isbn: '978-979-97312-3-4', stok: 3, cover: 'https://images.unsplash.com/photo-1495640388908-05fa85288e61?auto=format&fit=crop&w=500&q=80' }
         ];
         localStorage.setItem('books', JSON.stringify(defaultBooks));
     }
