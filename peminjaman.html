@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Peminjaman - SemestaBuku</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">🌿 SemestaBuku</a>
+        <div class="nav-links">
+            <a href="index.html">Katalog</a>
+            <a href="peminjaman.html" class="active">Form Peminjaman</a>
+            <a href="admin.html" class="btn-pill">Dashboard Admin</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="form-container" style="max-width: 600px;">
+            <h2 class="section-title" style="text-align: center;">Form Peminjaman Buku</h2>
+            <div id="alertMsg" style="text-align: center; margin-bottom: 15px; font-weight: bold; color: var(--primary-green);"></div>
+            <form id="peminjamanForm">
+                <div class="form-group">
+                    <label>Nama Lengkap Peminjam</label>
+                    <input type="text" id="nama_peminjam" required placeholder="Masukkan nama Anda...">
+                </div>
+                <div class="form-group">
+                    <label>Pilih Buku</label>
+                    <select id="book_select" required style="width:100%; padding:14px 20px; border-radius:50px; border:1px solid #ccc; background:white; outline:none;">
+                        <!-- Opsi buku dari localStorage -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Tanggal Pinjam</label>
+                    <input type="date" id="tanggal_pinjam" required>
+                </div>
+                <button type="submit" class="btn-pill" style="width: 100%; text-align: center;">Kirim Pengajuan Pinjam</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 SemestaBuku.</p>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            initDefaultData();
+            const select = document.getElementById('book_select');
+            const books = getBooks().filter(b => b.stok > 0);
+            select.innerHTML = books.map(b => `<option value="${b.id}">${b.judul} (Stok: ${b.stok})</option>`).join('');
+            
+            document.getElementById('tanggal_pinjam').valueAsDate = new Date();
+
+            document.getElementById('peminjamanForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const nama = document.getElementById('nama_peminjam').value;
+                const bookId = document.getElementById('book_select').value;
+                const tgl = document.getElementById('tanggal_pinjam').value;
+
+                savePeminjaman(nama, bookId, tgl);
+                document.getElementById('alertMsg').innerText = "Permintaan peminjaman berhasil dikirim!";
+                setTimeout(() => { window.location.href = 'index.html'; }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>

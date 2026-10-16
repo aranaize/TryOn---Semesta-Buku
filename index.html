@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SemestaBuku - Beranda</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">🌿 SemestaBuku</a>
+        <div class="nav-links">
+            <a href="index.html" class="active">Katalog</a>
+            <a href="peminjaman.html">Form Peminjaman</a>
+            <a href="admin.html" class="btn-pill" id="adminNavBtn">Dashboard Admin</a>
+        </div>
+    </nav>
+
+    <div class="hero-section">
+        <h1>Jelajahi Dunia Lewat Setiap Halaman Buku</h1>
+        <p>Temukan koleksi buku inspiratif dengan sistem peminjaman yang mudah, cepat, dan ramah lingkungan.</p>
+    </div>
+
+    <div class="search-pill-container">
+        <input type="text" id="searchBook" placeholder="Cari judul buku atau penulis...">
+        <button class="btn-pill">Cari Buku</button>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">Katalog Buku Pilihan</h2>
+        <div class="grid-catalog" id="catalogGrid">
+            <!-- Data buku akan dimuat otomatis via JavaScript localStorage -->
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 SemestaBuku. All Rights Reserved. Designed with Nature UI/UX.</p>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCatalog();
+        });
+    </script>
+</body>
+</html>

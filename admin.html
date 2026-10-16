@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - SemestaBuku</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="admin.html" class="nav-brand">🌿 Dashboard Admin SemestaBuku</a>
+        <div class="nav-links">
+            <a href="index.html" target="_blank">Lihat Website</a>
+            <a href="#" id="logoutBtn" class="btn-pill" style="background-color: #d9534f;">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2 class="section-title">Tambah Buku Baru</h2>
+        <div class="form-container" style="max-width: 100%; margin-bottom: 40px;">
+            <form id="addBookForm">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px;">
+                    <input type="text" id="add_judul" required placeholder="Judul Buku" style="padding:12px; border-radius:25px; border:1px solid #ccc;">
+                    <input type="text" id="add_penulis" required placeholder="Penulis" style="padding:12px; border-radius:25px; border:1px solid #ccc;">
+                    <input type="text" id="add_kategori" required placeholder="Kategori" style="padding:12px; border-radius:25px; border:1px solid #ccc;">
+                    <input type="text" id="add_isbn" required placeholder="ISBN" style="padding:12px; border-radius:25px; border:1px solid #ccc;">
+                    <input type="number" id="add_stok" required placeholder="Stok" style="padding:12px; border-radius:25px; border:1px solid #ccc;">
+                    <input type="text" id="add_cover" placeholder="URL Cover Buku" style="padding:12px; border-radius:25px; border:1px solid #ccc;">
+                </div>
+                <button type="submit" class="btn-pill" style="margin-top: 20px;">Tambah Buku</button>
+            </form>
+        </div>
+
+        <h2 class="section-title">Kelola Katalog Buku</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>ID</th><th>Judul</th><th>Penulis</th><th>Kategori</th><th>ISBN</th><th>Stok</th><th>Aksi</th></tr>
+                </thead>
+                <tbody id="adminBookTable"></tbody>
+            </table>
+        </div>
+
+        <h2 class="section-title">Daftar Peminjaman & Pengembalian</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>ID</th><th>Nama Peminjam</th><th>Judul Buku</th><th>Tgl Pinjam</th><th>Tgl Kembali</th><th>Status</th><th>Aksi</th></tr>
+                </thead>
+                <tbody id="adminTrxTable"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 SemestaBuku Admin Panel.</p>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if(localStorage.getItem('isLoggedIn') !== 'true') {
+                window.location.href = 'login.html';
+                return;
+            }
+            initDefaultData();
+            renderAdminTables();
+
+            document.getElementById('addBookForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const newBook = {
+                    judul: document.getElementById('add_judul').value,
+                    penulis: document.getElementById('add_penulis').value,
+                    kategori: document.getElementById('add_kategori').value,
+                    isbn: document.getElementById('add_isbn').value,
+                    stok: parseInt(document.getElementById('add_stok').value),
+                    cover: document.getElementById('add_cover').value || 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&w=500&q=80'
+                };
+                addBook(newBook);
+                renderAdminTables();
+                document.getElementById('addBookForm').reset();
+            });
+
+            document.getElementById('logoutBtn').addEventListener('click', (e) => {
+                e.preventDefault();
+                localStorage.removeItem('isLoggedIn');
+                window.location.href = 'login.html';
+            });
+        });
+    </script>
+</body>
+</html>
